@@ -8,16 +8,25 @@ import jakarta.persistence.Id;
 @Entity
 public class User {
     @Id
-    private String email;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     private String username;
+
     private String password;
 
-    public String getEmail() {
-        return email;
+    private String email;
+
+    private String mobile;
+
+    private boolean isvendor;
+
+    public int getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -34,5 +43,29 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public boolean isIsvendor() {
+        return isvendor;
+    }
+
+    public void setIsvendor(boolean isvendor) {
+        this.isvendor = isvendor;
     }
 }

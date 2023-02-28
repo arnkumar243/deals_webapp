@@ -2,35 +2,24 @@ package ds.project.deals.users.controller;
 
 import ds.project.deals.users.entity.User;
 import ds.project.deals.users.repository.UserRepository;
+import ds.project.deals.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path="/demo")
+@RequestMapping(path="/user")
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @PostMapping(path="/add")
-    public @ResponseBody String addNewUser (@RequestParam String email, @RequestParam String name
-            , @RequestParam String password) {
-
-
-        User n = new User();
-        n.setEmail(email);
-        n.setUsername(name);
-        n.setPassword(password);
-        userRepository.save(n);
-        return "Saved";
+    @PostMapping
+    public @ResponseBody User addNewUser (@RequestBody User user) {
+        return userService.createUser(user);
     }
 
-    @GetMapping(path="/all")
+    @GetMapping
     public @ResponseBody Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.listUser();
     }
 }
