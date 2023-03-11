@@ -55,7 +55,6 @@ public class SubscriberService {
         return subscriberRepository.save(subscriber);
     }
 
-    // to be moved to Sruthi's Repo:
     public List<Subscriber> getSubscriberByDeal(Deals deal) {
     	
     	if(deal == null || deal.getId() == 0) {
@@ -66,23 +65,26 @@ public class SubscriberService {
     		if(deal.getShop() == null || deal.getShop().getId() == 0) {
     			throw new EntityNotFoundException("Shop or Shop id not specified.");
     		}
-    		return subscriberRepository.findBySubShopId(deal.getShop().getId());
+    		return subscriberRepository.findByShop(deal.getShop().getId());
     	} else {
-    		return subscriberRepository.findBySubFixedDealsId(deal.getId());
+    		return subscriberRepository.findByFixedDeals(deal.getId());
     	}
     }
     
-    public void deleteSubscriber(Subscriber subscriber) {
-    	User user = userRepository.findById(subscriber.getUser().getId())
-    			.orElseThrow(() -> new EntityNotFoundException("User not found with id : " + subscriber.getUser().getId()));
-    	subscriberRepository.deleteById(user.getId());
+    public void deleteSubscriber(int subscriberId) {
+    	subscriberRepository.findById(subscriberId)
+    			.orElseThrow(() -> new EntityNotFoundException("Subscriber not found with id : " + subscriberId));
+    	subscriberRepository.deleteById(subscriberId);
     }
-    
-    //Till here
+
     public Subscriber getSubscriberById(int id) {
         Subscriber subscriber = subscriberRepository.findById(id)
                                     .orElseThrow(() -> new EntityNotFoundException("Subscriber not found with Id" + id));
         return subscriber;
+    }
+
+    public List<Subscriber> listSubscriberForUser(User user) {
+        return subscriberRepository.findByUser(user);
     }
 
     public Iterable<Subscriber> listSubscribers() {

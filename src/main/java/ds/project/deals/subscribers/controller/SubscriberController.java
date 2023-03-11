@@ -3,6 +3,7 @@ package ds.project.deals.subscribers.controller;
 import ds.project.deals.subscribers.entity.Subscriber;
 import ds.project.deals.subscribers.service.SubscriberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +21,12 @@ public class SubscriberController {
     @GetMapping(path="/{id}")
     public Subscriber getSubscriber(@PathVariable Integer id) {
         return subscriberService.getSubscriberById(id);
+    }
+
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity<Void> deleteSubscriber(@PathVariable Integer id) {
+        subscriberService.deleteSubscriber(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping()

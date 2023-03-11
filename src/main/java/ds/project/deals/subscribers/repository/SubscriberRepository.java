@@ -4,12 +4,15 @@ import ds.project.deals.subscribers.entity.Subscriber;
 
 import java.util.List;
 
+import ds.project.deals.users.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface SubscriberRepository extends CrudRepository<Subscriber, Integer> {
 	
-	List<Subscriber> findBySubFixedDealsId(int dealId);
+	List<Subscriber> findByFixedDeals(int dealId);
 	
-	List<Subscriber> findBySubShopId(int shopId);
+	List<Subscriber> findByShop(int shopId);
+
+	List<Subscriber> findByUser(User user);
 	
 }

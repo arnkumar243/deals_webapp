@@ -69,3 +69,13 @@ CREATE TABLE `deals_admin`.`subscribers` (
     REFERENCES `deals_admin`.`fixed_deals` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+INSERT INTO fixed_deals VALUES(1, "Custom");
+INSERT INTO fixed_deals VALUES(2, "New Year");
+INSERT INTO fixed_deals VALUES(3, "Memorial Day");
+INSERT INTO fixed_deals VALUES(4, "JuneTeenth");
+INSERT INTO fixed_deals VALUES(5, "Independence Day");
+INSERT INTO fixed_deals VALUES(6, "Labor Day");
+INSERT INTO fixed_deals VALUES(7, "Veterans Day");
+INSERT INTO fixed_deals VALUES(8, "Thanks Giving");
+INSERT INTO fixed_deals VALUES(9, "Christmas");
